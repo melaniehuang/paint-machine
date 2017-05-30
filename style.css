@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #90857d;
+  font-family: Titillium Web, sans-serif;
+  text-transform: uppercase;
+}
+
+#instructions{
+  position: absolute;
+  color:#FFFFFF;
+  padding:20px;
+  z-index:10;
+}
+
+.gifPaint {
+  position: absolute;
+  width:480px;
+  height:273px;
+}
+
+#rothkoCanvas {
+  z-index:2;
+  position: absolute;
+}
