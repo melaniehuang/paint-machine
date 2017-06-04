@@ -6,7 +6,6 @@ var origin;
 var paintBreak = 0;
 var paintGap = 100;
 var aPrev;
-var hexA = "FFFFFF";
 
 function preload() {
 }
@@ -18,40 +17,41 @@ function setup(){
 }
 
 function draw(){
+
   noStroke();
-  var colorA = color(149,156,166,80);
-  var colorB = color(65,69,70,60);
-
-  var num1 = 0;
-  var num2 = 0;
-  var num3 = 0;
-  num1 = parseInt(hexA.substring(0,2), 16);
-  num2 = parseInt(hexA.substring(2,4), 16);
-  num3 = parseInt(hexA.substring(4,6), 16);
-
-  colorA = color(num1,num2,num3,80);
+  var colorA = color(0,0,0,60); 
+  var colorB = color(65,69,70,60);  
+//  var colorA = color(149,156,166,80);
+  
+  // var hexA = "FF00FF";
+  // var colorRGB = [
+  //   parseInt(hexA.substring(0,2), 16),
+  //   parseInt(hexA.substring(2,4), 16),
+  //   parseInt(hexA.substring(4,6), 16)
+  // ];
+  // colorA = color(colorRGB[0],colorRGB[1],colorRGB[2],80);
+  
+  colorA = mixPaint("FF0000");
+  colorB = mixPaint("00FF00");
 
   rothko();
-
   paintBreak++;
 
   if (paintBreak == paintGap){
-    createPaint(1, colorA, colorB);
+    createPaint(1, colorA, colorB, 100);
     paintBreak = 0;
   }
 
-  var a1 = document.getElementById("hexA1").selectedIndex;  
-  if (a1 != aPrev){
-    console.log(document.getElementsByTagName("option")[a1].value);
-    var charHex = hexA.replace(hexA.charAt(0), document.getElementsByTagName("option")[a1].value);
-    hexA = charHex;
-    aPrev = a1;
-    console.log(hexA);
+  // var a1 = document.getElementById("hexA1").selectedIndex;  
+  // if (a1 != aPrev){
+  //   console.log(document.getElementsByTagName("option")[a1].value);
+  //   var charHex = hexA.replace(hexA.charAt(0), document.getElementsByTagName("option")[a1].value);
+  //   hexA = charHex;
+  //   aPrev = a1;
 
-
-    fill(color(num1, num2, num3));
-    rect(600,300,200,400);
-  }
+  //   fill(color(num1, num2, num3));
+  //   rect(600,300,200,400);
+  // }
 }
 
 function rothko(){
@@ -79,7 +79,17 @@ function rothko(){
   rect(origin.x,origin.y,origin.x - w*wr,origin.y - h*hr);
 }
 
-function createPaint(num, c1, c2){
+function mixPaint(h){
+  var hexColor = h;
+  var colorRGB = [
+    parseInt(hexColor.substring(0,2), 16),
+    parseInt(hexColor.substring(2,4), 16),
+    parseInt(hexColor.substring(4,6), 16)
+  ];
+  return color(colorRGB[0],colorRGB[1],colorRGB[2],80);
+}
+
+function createPaint(num, c1, c2, paintWidth, paintLength){
   stroke(c1);
   var x1, y1;
   var x2, y2;
@@ -105,7 +115,7 @@ function createPaint(num, c1, c2){
     x4 = x3 - 60;
     y4 = y3 + random(-30,20);
 
-    var rand = random(180,300);
+    var rand = random(paintWidth,paintWidth*2);
    
     for(var i = 0; i <= rand; i++) {
        xoff = xoff + 1;
