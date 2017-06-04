@@ -19,30 +19,9 @@ function setup(){
 function draw(){
 
   noStroke();
-  var colorA = color(0,0,0,60); 
-  var colorB = color(65,69,70,60);  
-//  var colorA = color(149,156,166,80);
   
-  // var hexA = "FF00FF";
-  // var colorRGB = [
-  //   parseInt(hexA.substring(0,2), 16),
-  //   parseInt(hexA.substring(2,4), 16),
-  //   parseInt(hexA.substring(4,6), 16)
-  // ];
-  // colorA = color(colorRGB[0],colorRGB[1],colorRGB[2],80);
-  
-  colorA = mixPaint("FF0000");
-  colorB = mixPaint("00FF00");
-
-  rothko();
-  paintBreak++;
-
-  if (paintBreak == paintGap){
-    createPaint(1, colorA, colorB, 100);
-    paintBreak = 0;
-  }
-
   // var a1 = document.getElementById("hexA1").selectedIndex;  
+
   // if (a1 != aPrev){
   //   console.log(document.getElementsByTagName("option")[a1].value);
   //   var charHex = hexA.replace(hexA.charAt(0), document.getElementsByTagName("option")[a1].value);
@@ -52,6 +31,34 @@ function draw(){
   //   fill(color(num1, num2, num3));
   //   rect(600,300,200,400);
   // }
+
+  
+  var h1 = "";
+  var h2 = "";
+
+  for (var i = 0; i < 6; i++){
+    var selectValue = $("#hexA" + i + " :selected").text(); // The text content of the selected option    
+    h1 += selectValue;
+  }
+
+  console.log(h1);
+  
+  for (var i = 0; i < 6; i++){
+    var selectValue = $("#hexB" + i + " :selected").text(); // The text content of the selected option    
+    h2 += selectValue;
+  }
+  console.log(h2);
+
+  var colorA = mixPaint(h1); 
+  var colorB = mixPaint(h2);  
+
+  rothko();
+  paintBreak++;
+
+  if (paintBreak == paintGap){
+    createPaint(1, colorA, colorB, 100);
+    paintBreak = 0;
+  }
 }
 
 function rothko(){
