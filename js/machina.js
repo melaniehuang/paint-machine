@@ -21,37 +21,8 @@ function draw(){
 
   noStroke();
   
-  // var a1 = document.getElementById("hexA1").selectedIndex;  
-
-  // if (a1 != aPrev){
-  //   console.log(document.getElementsByTagName("option")[a1].value);
-  //   var charHex = hexA.replace(hexA.charAt(0), document.getElementsByTagName("option")[a1].value);
-  //   hexA = charHex;
-  //   aPrev = a1;
-
-  //   fill(color(num1, num2, num3));
-  //   rect(600,300,200,400);
-  // }
-
-  
-  var h1 = "";
-  var h2 = "";
-
-  for (var i = 0; i < 6; i++){
-    var selectValue = $("#hexA" + i + " :selected").text(); // The text content of the selected option    
-    h1 += selectValue;
-  }
-
-  console.log(h1);
-  
-  for (var i = 0; i < 6; i++){
-    var selectValue = $("#hexB" + i + " :selected").text(); // The text content of the selected option    
-    h2 += selectValue;
-  }
-  console.log(h2);
-
-  var colorA = mixPaint(h1); 
-  var colorB = mixPaint(h2);  
+  var colorA = mixPaint(getPaint("A")); 
+  var colorB = mixPaint(getPaint("B"));  
 
   rothko();
   paintBreak++;
@@ -85,6 +56,15 @@ function rothko(){
   rect(origin.x,origin.y,origin.x - w*wr,origin.y - h*hr);
   fill(220,203,187,random(1,5));
   rect(origin.x,origin.y,origin.x - w*wr,origin.y - h*hr);
+}
+
+function getPaint(s){
+  var h = "";
+  for (var i = 0; i < 6; i++){
+    var selectValue = $("#hex" + s + i + " :selected").text(); // The text content of the selected option    
+    h += selectValue;
+  }
+  return h;
 }
 
 function mixPaint(h){
