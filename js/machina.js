@@ -14,6 +14,7 @@ function setup(){
   var canvas = createCanvas(windowWidth,windowHeight);
   canvas.parent("rothkoCanvas");
   origin = createVector(random(10,windowWidth-10),random(10,windowHeight-10));
+  clearPainting();
 }
 
 function draw(){
@@ -140,3 +141,11 @@ function keyPressed() {
   if (keyCode == BACKSPACE) {   
   }
 }
+
+function clearPainting() {
+  setInterval(function(){
+    clear();
+  }, 600000); //60000 = 1 min
+}
+
+
