@@ -14,13 +14,12 @@ function setup(){
   var canvas = createCanvas(windowWidth,windowHeight);
   canvas.parent("rothkoCanvas");
   origin = createVector(random(10,windowWidth-10),random(10,windowHeight-10));
+  background(144,133,125);
   clearPainting();
 }
 
 function draw(){
-
   noStroke();
-  
   var colorA = mixPaint(getPaint("A")); 
   var colorB = mixPaint(getPaint("B"));  
 
@@ -28,7 +27,7 @@ function draw(){
   paintBreak++;
 
   if (paintBreak == paintGap){
-    createPaint(1, colorA, colorB, 100);
+    createPaint(1, colorA, colorB, 200,200);
     paintBreak = 0;
   }
 }
@@ -124,8 +123,9 @@ function keyPressed() {
 
 function clearPainting() {
   setInterval(function(){
+    saveCanvas(canvas, "lastmachine", "jpg");
     clear();
-  }, 600000); //60000 = 1 min
+  }, 120000); //60000 = 1 min
 }
 
 
