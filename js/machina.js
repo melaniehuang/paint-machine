@@ -7,6 +7,42 @@ var paintBreak = 0;
 var paintGap = 100;
 var aPrev;
 
+var selectBoxes = {
+  82: "hexA0",
+  84: "hexA1",
+  89: "hexA2",
+  85: "hexA3",
+  73: "hexA4",
+  79: "hexA5",
+  80: "hexB0",
+  71: "hexB1",
+  72: "hexB2",
+  74: "hexB3",
+  75: "hexB4",
+  76: "hexB5"
+};
+
+var selectValues = {
+  48: "0",
+  49: "1",
+  50: "2",
+  51: "3",
+  52: "4",
+  53: "5",
+  54: "6",
+  55: "7",
+  56: "8",
+  57: "9",
+  65: "A",
+  66: "B",
+  67: "C",
+  68: "D",
+  69: "E",
+  70: "F",
+};
+
+var selectNum = selectBoxes[0];
+
 function preload() {
 }
 
@@ -128,4 +164,15 @@ function clearPainting() {
   }, 120000); //60000 = 1 min
 }
 
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode in selectBoxes) {
+    selectNum = selectBoxes[event.keyCode];
+    console.log(selectNum);
+  }
 
+  if (event.keyCode in selectValues) {
+    let hexDigit = selectValues[event.keyCode];
+    let newvalue = document.getElementById(selectNum);
+    newvalue.value = hexDigit;
+  }
+}, true);
