@@ -4,46 +4,43 @@ var i = 0;
 var horizontal = 0;
 var origin;
 var paintBreak = 0;
-var paintGap = 100;
+var paintGap = 50;
 var aPrev;
 
 var selectBoxes = {
-  82: "hexA0",
-  84: "hexA1",
-  89: "hexA2",
-  85: "hexA3",
-  73: "hexA4",
-  79: "hexA5",
-  80: "hexB0",
-  71: "hexB1",
-  72: "hexB2",
-  74: "hexB3",
-  75: "hexB4",
-  76: "hexB5"
+  82: "hexA0", // R
+  84: "hexA1", // T
+  89: "hexA2", // Y
+  85: "hexA3", // U
+  73: "hexA4", // I
+  79: "hexA5", // D
+  80: "hexB0", // P
+  71: "hexB1", // G 
+  72: "hexB2", // H
+  74: "hexB3", // J
+  75: "hexB4", // K
+  76: "hexB5", // L
 };
+
+var selectChannels = {};
 
 var selectValues = {
-  48: "0",
-  49: "1",
-  50: "2",
-  51: "3",
-  52: "4",
-  53: "5",
-  54: "6",
-  55: "7",
-  56: "8",
-  57: "9",
-  65: "A",
-  66: "B",
-  67: "C",
-  68: "D",
-  69: "E",
-  70: "F",
+  48: ["0", "8"], // 0
+  49: ["1", "9"], // 1
+  50: ["2", "A"], // 2
+  51: ["3", "B"], // 3
+  52: ["4", "C"], // 4
+  53: ["5", "D"], // 5
+  54: ["6", "E"], // 6
+  55: ["7", "F"], // 7
 };
 
-var selectNum = selectBoxes[0];
+var selectNum = selectBoxes[82];
 
 function preload() {
+  for (sb in selectBoxes) {
+    selectChannels[selectBoxes[sb]] = 0;
+  }
 }
 
 function setup(){
@@ -152,11 +149,6 @@ function createPaint(num, c1, c2, paintWidth, paintLength){
    }
 }
 
-function keyPressed() {
-  if (keyCode == BACKSPACE) {   
-  }
-}
-
 function clearPainting() {
   setInterval(function(){
     saveCanvas(canvas, "lastmachine", "jpg");
@@ -170,9 +162,16 @@ document.addEventListener('keydown', function(event) {
     console.log(selectNum);
   }
 
+
   if (event.keyCode in selectValues) {
     let hexDigit = selectValues[event.keyCode];
     let newvalue = document.getElementById(selectNum);
-    newvalue.value = hexDigit;
+    let channel = selectChannels[selectNum];
+
+    newvalue.value = hexDigit[channel];
+
+    if (event.keyCode == 55) {
+      selectChannels[selectNum] = (channel + 1) % 2;
+    }
   }
 }, true);
