@@ -1,7 +1,13 @@
 # paint-machine
 
+
 Creating a visual-synth box to control painting a canvas. 
 
+Final product:
+![Artwork](http://i.imgur.com/yd3T2js.jpg)
+![Artwork](http://i.imgur.com/ddbg30m.jpg)
+
+Machine artwork:
 ![Artwork](http://i.imgur.com/KCJMWWJ.jpg)
 ![Artwork](http://i.imgur.com/twlhnGE.jpg)
 ![Artwork](http://i.imgur.com/GaXnhVh.jpg)
